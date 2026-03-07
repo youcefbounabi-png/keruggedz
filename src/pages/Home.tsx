@@ -125,14 +125,14 @@ export default function Home() {
         </div>
 
         {/* Massive Typography */}
-        <div className={`flex flex-col mb-16 pointer-events-none w-full ${t('', 'items-end pr-0 md:pr-12')}`}>
-          <div className={t('overflow-hidden', 'overflow-visible mb-2 md:mb-4')}>
-            <h1 className={`gpu-ready hero-text-line text-[clamp(3.5rem,14vw,12rem)] ${t('leading-[0.8] tracking-tighter', 'leading-none tracking-normal text-right')} uppercase bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] via-[#999999] to-[#444444]`} style={{ fontFamily: '"Playfair Display", serif' }}>
+        <div className={`flex flex-col mb-16 pointer-events-none w-full ${t('items-start pl-0 md:pl-12', 'items-end pr-0 md:pr-12')}`}>
+          <div className={`${t('overflow-hidden', 'overflow-visible mb-2 md:mb-4')} w-fit`}>
+            <h1 className={`gpu-ready hero-text-line text-[clamp(2.5rem,14vw,12rem)] ${t('leading-[0.8] tracking-tighter text-left', 'leading-none tracking-normal text-right')} uppercase bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] via-[#999999] to-[#444444]`} style={{ fontFamily: '"Playfair Display", serif' }}>
               {t('Technical', 'عتاد')}
             </h1>
           </div>
-          <div className={`${t('overflow-hidden', 'overflow-visible')} lg:pl-[10vw]`}>
-            <h1 className={`gpu-ready hero-text-line text-[clamp(3.5rem,14vw,12rem)] ${t('leading-[0.8] tracking-tighter', 'leading-none tracking-normal text-right')} uppercase italic font-light text-[#777777]`} style={{ fontFamily: '"Playfair Display", serif' }}>
+          <div className={`${t('overflow-hidden lg:pl-[10vw]', 'overflow-visible lg:pr-[10vw]')} w-fit`}>
+            <h1 className={`gpu-ready hero-text-line text-[clamp(2.5rem,14vw,12rem)] ${t('leading-[0.8] tracking-tighter text-left', 'leading-none tracking-normal text-right')} uppercase italic font-light text-[#777777]`} style={{ fontFamily: '"Playfair Display", serif' }}>
               {t('Streetwear', 'النخبة')}
             </h1>
           </div>
