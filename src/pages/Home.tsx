@@ -405,7 +405,7 @@ export default function Home() {
           <h2 className={`text-[8vw] ${t('leading-[1]', 'leading-tight')} font-light text-[#fafafa] max-w-[90vw] tracking-tighter`} style={{ fontFamily: '"Playfair Display", serif' }}>
             {t(
               <>Function meets <span className="italic text-[#999999]">form</span>.</>,
-              <>همة وتهمة <span className="italic text-[#999999]">في لبسة وحدة</span>.</>
+              <>همة و شان <span className="italic text-[#999999]">في لبسه وحدة</span>.</>
             )}
           </h2>
           <p className={`max-w-2xl mt-16 text-xs md:text-sm ${t('tracking-[0.3em]', 'tracking-[0.1em]')} font-medium leading-loose uppercase text-[#999999] mx-auto`}>
