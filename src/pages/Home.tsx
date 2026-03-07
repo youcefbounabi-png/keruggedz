@@ -118,7 +118,7 @@ export default function Home() {
             muted
             playsInline
             preload="auto"
-            className="w-full h-full object-cover opacity-80"
+            className="w-full h-full object-cover opacity-80 min-w-[250%] md:min-w-full -translate-x-[30%] md:translate-x-0"
           >
             <source src="/custom/d4717a53-4af4-47aa-ad5b-e65f19fef091.mp4" type="video/mp4" />
           </video>
@@ -397,7 +397,7 @@ export default function Home() {
             muted
             playsInline
             preload="none"
-            className="w-full h-full object-cover filter blur-sm parallax-image scale-125"
+            className="w-full h-full object-cover filter blur-sm parallax-image scale-125 min-w-[250%] md:min-w-full -translate-x-[30%] md:translate-x-0"
           ></video>
         </div>
 
