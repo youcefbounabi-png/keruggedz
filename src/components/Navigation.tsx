@@ -71,8 +71,8 @@ export default function Navigation() {
         </div>
 
         {/* Center Logo */}
-        <div className="absolute left-1/2 -translate-x-1/2 md:flex-shrink-0 md:static md:translate-x-0 mx-auto text-center pointer-events-auto max-w-[50%] md:max-w-none">
-          <Link to="/" aria-label="Home" className="text-[13px] sm:text-lg md:text-3xl lg:text-4xl tracking-[0.15em] sm:tracking-[0.25em] md:tracking-[0.5em] font-light uppercase focus:outline-none block bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] via-[#999999] to-[#444444] animate-glow whitespace-nowrap" style={{ fontFamily: '"Playfair Display", serif' }}>
+        <div className="absolute left-1/2 -translate-x-1/2 md:flex-shrink-0 md:static md:translate-x-0 mx-auto text-center pointer-events-auto">
+          <Link to="/" aria-label="Home" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-[0.3em] md:tracking-[0.5em] font-light uppercase focus:outline-none block bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] via-[#999999] to-[#444444] animate-glow whitespace-nowrap" style={{ fontFamily: '"Playfair Display", serif' }}>
             KERUGGEDZ
           </Link>
         </div>
@@ -95,12 +95,9 @@ export default function Navigation() {
           </button>
         </div>
 
-        {/* Mobile Toggle & Mobile Cart */}
+        {/* Mobile Toggle & Mobile Cart — no language toggle here, it's in the mobile menu */}
         <div className="flex md:hidden flex-1 justify-end items-center gap-4 pointer-events-auto z-50">
-          <button aria-label="Toggle Language" onClick={toggleLanguage} className="p-2 hover:opacity-70 transition-opacity focus:outline-none flex items-center justify-center">
-            <span className="font-sans font-bold text-[16px] text-white">{language === 'en' ? 'ع' : 'EN'}</span>
-          </button>
-          <Link to="/checkout" aria-label="Cart" className="p-2 hover:opacity-70 transition-opacity focus:outline-none border-l border-[#333] pl-4">
+          <Link to="/checkout" aria-label="Cart" className="p-2 hover:opacity-70 transition-opacity focus:outline-none">
             <ShoppingBag className="w-5 h-5 text-white" />
           </Link>
           <button aria-label="Toggle Menu" aria-expanded={isOpen} className="p-2 hover:opacity-70 transition-opacity focus:outline-none" onClick={() => setIsOpen(!isOpen)}>
@@ -118,6 +115,15 @@ export default function Navigation() {
             <ShoppingBag className={`w-5 h-5 ${isAr ? 'ml-4' : 'mr-4'}`} />
             {t('Cart', 'السلة')} [0]
           </Link>
+          {/* Language Toggle — moved here from navbar */}
+          <button
+            onClick={() => { toggleLanguage(); setIsOpen(false); }}
+            className="menu-item flex items-center gap-3 hover:text-[#999999] transition-colors duration-300 focus:outline-none p-2 mt-4 border-t border-white/10 pt-8"
+            aria-label="Toggle Language"
+          >
+            <Globe className="w-5 h-5 opacity-70" />
+            <span className="font-sans font-bold text-[16px] tracking-widest">{language === 'en' ? 'عربية' : 'ENGLISH'}</span>
+          </button>
         </div>
       </div>
     </>
