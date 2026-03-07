@@ -124,7 +124,7 @@ export default function Home() {
             preload="auto"
             className="w-full h-full object-cover opacity-80 min-w-[250%] md:min-w-full -translate-x-[30%] md:translate-x-0"
           >
-            <source src="/custom/d4717a53-4af4-47aa-ad5b-e65f19fef091.mp4" type="video/mp4" />
+            <source src="/custom/d4717a53-4af4-47aa-ad5b-e65f19fef091.mp4#t=1.5" type="video/mp4" />
           </video>
         </div>
 
@@ -393,7 +393,7 @@ export default function Home() {
 
       {/* Extreme Manifesto Section with Secondary Video Storytelling */}
       <section className="gpu min-h-screen relative z-10 bg-[#111111] flex flex-col items-center justify-center overflow-hidden fluid-section text-center px-6 py-32">
-        <div className="absolute inset-0 md:inset-0 -left-[75%] -right-0 md:left-0 z-0 opacity-20 pointer-events-none mix-blend-screen">
+        <div className="absolute inset-0 z-0 opacity-20 pointer-events-none mix-blend-screen flex items-center justify-center">
           <video
             src="/custom/abb9b182-a9cb-4155-9a88-aa62143faf15.mp4"
             autoPlay
@@ -401,7 +401,7 @@ export default function Home() {
             muted
             playsInline
             preload="none"
-            className="w-full h-full object-cover filter blur-sm scale-125"
+            className="w-full h-full object-cover filter blur-sm"
           ></video>
         </div>
 
