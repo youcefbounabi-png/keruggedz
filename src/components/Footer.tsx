@@ -58,7 +58,6 @@ export default function Footer() {
                     <ul className={`space-y-4 text-xs font-medium ${t('tracking-[0.15em]', 'tracking-normal')} uppercase`}>
                         <li><a href="/" className="hover:text-[#999999] transition-colors">{t('Home', 'الرئيسية')}</a></li>
                         <li><a href="/shop" className="hover:text-[#999999] transition-colors">{t('Shop All', 'شوف السلعة')}</a></li>
-                        <li><a href="/custom" className="hover:text-[#999999] transition-colors">{t('Custom Piece', 'تفصيل خاص')}</a></li>
                         <li><a href="/about" className="hover:text-[#999999] transition-colors">{t('About Story', 'حكايتنا')}</a></li>
                     </ul>
                 </div>
@@ -69,9 +68,12 @@ export default function Footer() {
                         <input
                             type="text"
                             placeholder={t('JOIN THE LIST', 'انضم للقائمة')}
+                            aria-label={t('Newsletter Subscription', 'الاشتراك في النشرة الإخبارية')}
                             className={`w-full bg-transparent border-b border-white/10 py-4 text-[10px] ${t('tracking-[0.3em]', 'tracking-[0.1em]')} uppercase outline-none focus:border-white transition-colors duration-500`}
                         />
-                        <button className={`absolute ${t('right-0', 'left-0')} top-1/2 -translate-y-1/2 text-[10px] font-bold ${t('tracking-[0.3em]', 'tracking-[0.1em]')} uppercase text-[#fafafa] hover:text-[#999999] transition-colors`}>
+                        <button
+                            aria-label={t('Submit Newsletter', 'إرسال')}
+                            className={`absolute ${t('right-0', 'left-0')} top-1/2 -translate-y-1/2 text-[10px] font-bold ${t('tracking-[0.3em]', 'tracking-[0.1em]')} uppercase text-[#fafafa] hover:text-[#999999] transition-colors`}>
                             {t('Submit', 'إرسال')}
                         </button>
                     </div>

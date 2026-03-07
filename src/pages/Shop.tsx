@@ -199,6 +199,7 @@ export default function Shop() {
                         src={product.image}
                         alt={product.name}
                         loading="lazy"
+                        decoding="async"
                         className="gpu-ready object-cover w-full h-full transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110 filter grayscale-[20%] group-hover:grayscale-0 opacity-70 group-hover:opacity-100"
                       />
                     </div>

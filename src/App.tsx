@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
 gsap.registerPlugin(ScrollTrigger);
 
 // Components
-import SplineScene from './components/3d/SplineScene';
+const SplineScene = lazy(() => import('./components/3d/SplineScene'));
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import Preloader from './components/Preloader';
@@ -19,7 +19,6 @@ const Home = lazy(() => import('./pages/Home'));
 const Shop = lazy(() => import('./pages/Shop'));
 const Product = lazy(() => import('./pages/Product'));
 const About = lazy(() => import('./pages/About'));
-const Custom = lazy(() => import('./pages/Custom'));
 const Checkout = lazy(() => import('./pages/Checkout'));
 
 function ScrollToTop() {
@@ -44,7 +43,7 @@ export default function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsAppReady(true);
-    }, 1500);
+    }, 2000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -99,7 +98,6 @@ export default function App() {
                     <Route path="/shop" element={<Shop />} />
                     <Route path="/product/:id" element={<Product />} />
                     <Route path="/about" element={<About />} />
-                    <Route path="/custom" element={<Custom />} />
                     <Route path="/checkout" element={<Checkout />} />
                   </Routes>
                 </Suspense>

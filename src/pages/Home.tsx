@@ -118,6 +118,7 @@ export default function Home() {
             loop
             muted
             playsInline
+            preload="auto"
             className="w-full h-full object-cover opacity-80"
           ></video>
         </div>
@@ -138,7 +139,7 @@ export default function Home() {
 
         {/* Hero Meta Data */}
         <div className={`gpu-ready mt-8 md:absolute md:top-1/2 ${t('md:right-6 lg:right-20 text-left md:text-right', 'md:left-6 lg:left-20 text-right md:text-left')} md:-translate-y-1/2 max-w-sm hero-meta pointer-events-auto z-20`}>
-          <p className={`text-[10px] ${t('tracking-[0.3em]', 'tracking-[0.1em]')} font-medium leading-loose uppercase mb-8 md:mb-12 text-[#e5e5e5]`}>
+          <p className={`text-[10px] ${t('tracking-[0.3em]', 'tracking-[0.1em]')} font-medium leading-loose uppercase mb-8 md:mb-12 text-[#e5e5e5]`} aria-label="Brand Description">
             {t(
               <>
                 KERUGGEDZ | HIGH-PERFORMANCE STREETWEAR.
@@ -162,6 +163,7 @@ export default function Home() {
           </p>
           <Link
             to="/shop"
+            aria-label="Explore Equipment"
             className={`inline-flex items-center text-[10px] ${t('tracking-[0.4em]', 'tracking-[0.2em]')} font-bold uppercase pb-3 border-b border-white hover:text-[#999999] hover:border-[#999999] transition-all duration-300 group`}
           >
             {t('Explore Equipment', 'اكتشف السلعة')}
@@ -219,6 +221,8 @@ export default function Home() {
                 <img
                   src="/assets/alpine_fog.png"
                   alt="Alpine Manifesto"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-110 transition-all duration-1000 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent opacity-60"></div>
@@ -268,6 +272,8 @@ export default function Home() {
                     <img
                       src={item.img}
                       alt={item.title}
+                      loading="lazy"
+                      decoding="async"
                       className="gpu-ready parallax-image object-cover w-full h-full transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110 opacity-80 group-hover:opacity-100 filter grayscale-[20%] group-hover:grayscale-0"
                     />
                   </div>
@@ -289,6 +295,97 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Field Reports / Creative Testimonials Section */}
+      <section className="gpu py-32 md:py-48 px-6 md:px-20 relative z-10 bg-[#0a0a0a] fluid-section border-y border-white:5 overflow-hidden">
+        {/* Decorative Grid Background */}
+        <div className="absolute inset-0 z-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+
+        <div className="max-w-[2400px] mx-auto relative z-10">
+          <div className="flex flex-col md:flex-row justify-between items-start mb-24 border-b border-white/10 pb-12">
+            <div>
+              <div className="flex items-center gap-4 mb-6">
+                <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                <span className={`text-[10px] ${t('font-mono', 'font-sans')} tracking-[0.3em] uppercase text-[#999]`}>[ LIVE_FEED.DAT ]</span>
+              </div>
+              <h2 className={`text-4xl md:text-6xl font-light tracking-tighter ${t('', 'leading-tight')}`} style={{ fontFamily: '"Playfair Display", serif' }}>
+                {t(
+                  <>Field <span className="italic text-[#777]">Reports.</span></>,
+                  <>آراء <span className="italic text-[#777]">الزبائن.</span></>
+                )}
+              </h2>
+            </div>
+            <p className={`text-[10px] ${t('tracking-[0.2em]', 'tracking-normal')} uppercase text-[#777] max-w-xs md:text-right mt-8 md:mt-0 font-medium leading-relaxed`}>
+              {t(
+                "Unfiltered transmissions from operatives deployed across urban and alpine environments.",
+                "شهادات حية من عند الزبائن نتاوعنا من مختلف ولايات الوطن."
+              )}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                id: "OP-01",
+                name: "Amine. B",
+                location: "Algiers (16)",
+                gear: "Terrain Shell Jacket",
+                reportEn: "Initial deployment in heavy coastal rain. The waterproofing held completely. The asymmetric cut draws attention but serves a genuine functional purpose. Exactly the armor I needed.",
+                reportAr: "لبستها في الشتا والريح ، حاجة بزاف كاليتي وما تدخلش الما. الديزاين نتاعها سبيسيال ويعطيك هيبة. هذي هي السلعة المضمونة لي كنت نحوس عليها."
+              },
+              {
+                id: "OP-02",
+                name: "Yassine. S",
+                location: "Oran (31)",
+                gear: "Summit Utility Bag",
+                reportEn: "Tactical storage is unmatched. I transitioned from a corporate commute strictly to an underground event in the industrial zone, and the aesthetic fit both flawlessly. Delivery was secure and fast.",
+                reportAr: "الكابا هذي ما تزيدش تلقى خير منها، ترفدها للخدمة ولا للخارجة ديما تبان كلاص. التوصيل كان خفيف ظريف ووصلتني لباب الدار، يعطيكم الصحة الخاوة."
+              },
+              {
+                id: "OP-03",
+                name: "Walid. D",
+                location: "Constantine (25)",
+                gear: "Alpine Half-Zip",
+                reportEn: "The bridge suspension bridges the gap between raw streetwear and technical gear. Worn for 14 hours straight on the suspension bridges, comfort and thermal regulation are top-tier.",
+                reportAr: "لاطاي جاتني سوا سوا، والقماش نتاعها يبان غالي ومخدوم غاية. مشيت بيها نهار كامل وما حسيتش بيها خلاص، مريحة بزاف وتبان همة وشأن."
+              }
+            ].map((report) => (
+              <div
+                key={report.id}
+                className="tech-frame p-8 md:p-12 bg-[#111111] group relative hover:bg-[#151515] transition-all duration-500 cursor-default focus:outline-none focus:ring-1 focus:ring-white/20"
+                tabIndex={0}
+                aria-label={`Field Report from ${report.name}`}
+              >
+                {/* Tech Bracket Accents */}
+                <div className="corner-tl opacity-50"></div>
+                <div className="corner-tr opacity-50"></div>
+                <div className="corner-bl opacity-50"></div>
+                <div className="corner-br opacity-50"></div>
+
+                {/* Header */}
+                <div className="flex justify-between items-start mb-12 border-b border-white/5 pb-6">
+                  <div>
+                    <h3 className={`text-sm font-bold tracking-[0.2em] uppercase text-[#fafafa] mb-2`}>{report.name}</h3>
+                    <p className={`text-[10px] ${t('font-mono', 'font-sans')} tracking-[0.2em] uppercase text-[#666]`}>[{report.location}]</p>
+                  </div>
+                  <span className={`text-[9px] ${t('font-mono', 'font-sans bg-white/5 px-2 py-1')} tracking-widest text-[#888]`}>{report.id}</span>
+                </div>
+
+                {/* Body Content */}
+                <p className={`text-sm md:text-[15px] leading-loose ${t('text-[#aaaaaa]', 'text-[#cccccc]')} font-light mb-12 group-hover:text-white transition-colors duration-500`}>
+                  "{t(report.reportEn, report.reportAr)}"
+                </p>
+
+                {/* Footer Data */}
+                <div className="absolute bottom-8 left-8 right-8 flex justify-between items-center pt-6 border-t border-white/5">
+                  <span className={`text-[9px] ${t('tracking-[0.2em]', 'tracking-normal')} uppercase text-[#555]`}>GEAR_{t('EQUIPPED', 'المستعمل')}:</span>
+                  <span className={`text-[10px] font-semibold tracking-wider text-[#fafafa]`}>{report.gear}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Extreme Manifesto Section with Secondary Video Storytelling */}
       <section className="gpu min-h-screen relative z-10 bg-[#111111] flex flex-col items-center justify-center overflow-hidden fluid-section text-center px-6 py-32">
         <div className="absolute inset-0 z-0 opacity-20 pointer-events-none mix-blend-screen">
@@ -298,6 +395,7 @@ export default function Home() {
             loop
             muted
             playsInline
+            preload="none"
             className="w-full h-full object-cover filter blur-sm parallax-image scale-125"
           ></video>
         </div>

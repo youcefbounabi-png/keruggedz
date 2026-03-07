@@ -72,18 +72,13 @@ export default function Navigation() {
 
         {/* Center Logo */}
         <div className="absolute left-1/2 -translate-x-1/2 md:flex-shrink-0 md:static md:translate-x-0 mx-auto text-center pointer-events-auto">
-          <Link to="/" className="text-2xl md:text-3xl lg:text-4xl tracking-[0.5em] font-light uppercase focus:outline-none block bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] via-[#999999] to-[#444444] animate-glow" style={{ fontFamily: '"Playfair Display", serif' }}>
+          <Link to="/" aria-label="Home" className="text-2xl md:text-3xl lg:text-4xl tracking-[0.5em] font-light uppercase focus:outline-none block bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] via-[#999999] to-[#444444] animate-glow" style={{ fontFamily: '"Playfair Display", serif' }}>
             KERUGGEDZ
           </Link>
         </div>
 
         {/* Right Side Links */}
         <div className={`hidden md:flex flex-1 justify-end items-center gap-6 lg:gap-10 text-[12px] font-semibold ${t('tracking-[0.4em]', 'tracking-normal')} uppercase pointer-events-auto`}>
-          <Link to="/custom" className="group relative transition-colors duration-300 focus:outline-none p-2 -m-2">
-            <span className="group-hover:text-[#999999] transition-colors">{t('Atelier / Custom', 'تفصيل خاص')}</span>
-            <span className="absolute left-2 right-2 bottom-1 h-[1px] bg-white scale-x-0 origin-right transition-transform duration-500 group-hover:scale-x-100"></span>
-          </Link>
-          <span className="text-[#666]">/</span>
           <Link to="/checkout" className="group relative flex items-center transition-colors duration-300 focus:outline-none p-2 -m-2">
             <ShoppingBag className={`w-4 h-4 ${isAr ? 'ml-3' : 'mr-3'} mb-[2px] opacity-70 group-hover:opacity-100 transition-opacity text-[#999999]`} />
             <span className="group-hover:text-[#999999] transition-colors">{t('Cart', 'السلة')} [0]</span>
@@ -102,13 +97,13 @@ export default function Navigation() {
 
         {/* Mobile Toggle & Mobile Cart */}
         <div className="flex md:hidden flex-1 justify-end items-center gap-4 pointer-events-auto z-50">
-          <button onClick={toggleLanguage} className="p-2 hover:opacity-70 transition-opacity focus:outline-none flex items-center justify-center">
+          <button aria-label="Toggle Language" onClick={toggleLanguage} className="p-2 hover:opacity-70 transition-opacity focus:outline-none flex items-center justify-center">
             <span className="font-sans font-bold text-[16px] text-white">{language === 'en' ? 'ع' : 'EN'}</span>
           </button>
-          <Link to="/checkout" className="p-2 hover:opacity-70 transition-opacity focus:outline-none border-l border-[#333] pl-4">
+          <Link to="/checkout" aria-label="Cart" className="p-2 hover:opacity-70 transition-opacity focus:outline-none border-l border-[#333] pl-4">
             <ShoppingBag className="w-5 h-5 text-white" />
           </Link>
-          <button className="p-2 hover:opacity-70 transition-opacity focus:outline-none" onClick={() => setIsOpen(!isOpen)}>
+          <button aria-label="Toggle Menu" aria-expanded={isOpen} className="p-2 hover:opacity-70 transition-opacity focus:outline-none" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
@@ -119,7 +114,6 @@ export default function Navigation() {
         <div className={`flex flex-col items-center space-y-12 text-xl font-light ${t('tracking-[0.3em]', 'tracking-normal')} uppercase text-[#fafafa]`}>
           <Link to="/shop" onClick={() => setIsOpen(false)} className="menu-item hover:text-[#999999] transition-colors duration-300 focus:outline-none p-2">{t('Shop Archive', 'المنتجات')}</Link>
           <Link to="/about" onClick={() => setIsOpen(false)} className="menu-item hover:text-[#999999] transition-colors duration-300 focus:outline-none p-2">{t('Manifesto', 'حكايتنا')}</Link>
-          <Link to="/custom" onClick={() => setIsOpen(false)} className="menu-item hover:text-[#999999] transition-colors duration-300 focus:outline-none p-2">{t('Atelier Custom', 'تفصيل خاص')}</Link>
           <Link to="/checkout" onClick={() => setIsOpen(false)} className="menu-item flex items-center hover:text-[#999999] transition-colors duration-300 focus:outline-none p-2 mt-8 border-t border-white/10 pt-8">
             <ShoppingBag className={`w-5 h-5 ${isAr ? 'ml-4' : 'mr-4'}`} />
             {t('Cart', 'السلة')} [0]
