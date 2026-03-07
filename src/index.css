@@ -60,6 +60,32 @@
     contain-intrinsic-size: auto 100vh;
   }
 
+  /* Performance: disable expensive scan-line animation on mobile */
+  .tech-frame::after {
+    animation: none !important;
+  }
+
+  /* Performance: simplify glow animation on mobile */
+  .animate-glow {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+
+  /* Performance: reduce will-change overhead on mobile */
+  .gpu-ready {
+    will-change: auto;
+  }
+
+  .gpu {
+    will-change: auto;
+  }
+
+  /* Performance: defer rendering of off-screen sections */
+  .fluid-section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 100vh;
+  }
+
   /* Performance: disable parallax on mobile for smooth 60fps scrolling */
   .parallax-image {
     transform: none !important;
