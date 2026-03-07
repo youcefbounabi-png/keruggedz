@@ -87,8 +87,20 @@ export default function Footer() {
                 <div className={`text-[9px] text-[#444] ${t('tracking-[0.3em]', 'tracking-[0.1em]')} uppercase`}>
                     &copy; {new Date().getFullYear()} {t('Keruggedz. All rights reserved.', 'كيروغدز. جميع الحقوق محفوظة.')}
                 </div>
-                <div className={`text-[9px] text-[#444] ${t('tracking-[0.3em]', 'tracking-[0.1em]')} uppercase`}>
-                    {t('Curated by Kerugge Team', 'تم تنسيقه بواسطة فريق كيروغدز')}
+                <div className="flex items-center gap-3">
+                    <span className={`text-[9px] text-[#444] ${t('tracking-[0.3em]', 'tracking-[0.1em]')} uppercase`}>
+                        {t('Designed & Built by', 'صمم وبرمج بواسطة')}
+                    </span>
+                    <span className="w-4 h-[1px] bg-gradient-to-r from-transparent via-[#666] to-transparent"></span>
+                    <a
+                        href="https://www.instagram.com/youcef.dev_/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[10px] text-[#888] tracking-[0.15em] uppercase hover:text-[#fafafa] transition-all duration-500 group relative"
+                    >
+                        <span className="relative z-10">youcef.dev_</span>
+                        <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#fafafa] group-hover:w-full transition-all duration-500"></span>
+                    </a>
                 </div>
             </div>
         </footer>
