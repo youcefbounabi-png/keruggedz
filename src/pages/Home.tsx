@@ -61,35 +61,39 @@ export default function Home() {
         });
       });
 
-      // Standard Parallax images
-      const images = gsap.utils.toArray('.parallax-image');
-      images.forEach((img: any) => {
-        // Scroll Parallax
-        gsap.to(img, {
-          scrollTrigger: {
-            trigger: img.parentElement,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: true,
-          },
-          yPercent: 15,
-          ease: 'none',
-        });
-      });
+      // Desktop-only scroll effects (skip on mobile for 60fps scrolling)
+      const isMobile = window.innerWidth < 768;
 
-      // Simple video scale on scroll
-      if (videoRef.current) {
-        gsap.to(videoRef.current, {
-          scrollTrigger: {
-            trigger: '.hero-container',
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true,
-          },
-          scale: 1.1,
-          opacity: 0.4,
-          ease: 'none',
+      if (!isMobile) {
+        // Standard Parallax images
+        const images = gsap.utils.toArray('.parallax-image');
+        images.forEach((img: any) => {
+          gsap.to(img, {
+            scrollTrigger: {
+              trigger: img.parentElement,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true,
+            },
+            yPercent: 15,
+            ease: 'none',
+          });
         });
+
+        // Simple video scale on scroll
+        if (videoRef.current) {
+          gsap.to(videoRef.current, {
+            scrollTrigger: {
+              trigger: '.hero-container',
+              start: 'top top',
+              end: 'bottom top',
+              scrub: true,
+            },
+            scale: 1.1,
+            opacity: 0.4,
+            ease: 'none',
+          });
+        }
       }
     }, containerRef);
 
