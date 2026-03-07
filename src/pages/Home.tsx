@@ -30,12 +30,12 @@ export default function Home() {
       // Fluid Hero Reveal
       gsap.from('.hero-text-line', {
         yPercent: 120,
-        rotationZ: 3,
+        skewY: 2,
         opacity: 0,
-        duration: 1.2,
-        stagger: 0.1,
+        duration: 2.5,
+        stagger: 0.15,
         ease: 'power4.out',
-        delay: 0,
+        delay: 0.3,
       });
 
       gsap.from('.hero-meta', {
@@ -126,12 +126,12 @@ export default function Home() {
 
         {/* Massive Typography */}
         <div className={`flex flex-col mb-16 pointer-events-none w-full ${t('items-start pl-0 md:pl-12', 'items-end text-right pr-0 md:pr-12')}`}>
-          <div className={`${t('overflow-hidden', 'overflow-visible mb-2 md:mb-4')} w-fit ${t('', 'ml-auto')}`}>
+          <div className={`overflow-hidden mb-2 md:mb-4 w-fit ${t('', 'ml-auto')}`}>
             <h1 className={`gpu-ready hero-text-line text-[clamp(3rem,14vw,12rem)] ${t('leading-[0.8] tracking-tighter text-left', 'leading-none tracking-normal text-right')} uppercase bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] via-[#999999] to-[#444444]`} style={{ fontFamily: '"Playfair Display", serif' }}>
               {t('Technical', 'مُعدات')}
             </h1>
           </div>
-          <div className={`${t('overflow-hidden lg:pl-[10vw]', 'overflow-visible lg:pr-[10vw]')} w-fit ${t('', 'ml-auto')}`}>
+          <div className={`overflow-hidden ${t('lg:pl-[10vw]', 'lg:pr-[10vw]')} w-fit ${t('', 'ml-auto')}`}>
             <h1 className={`gpu-ready hero-text-line text-[clamp(2.5rem,14vw,12rem)] ${t('leading-[0.8] tracking-tighter text-left', 'leading-none tracking-normal text-right')} uppercase italic font-light text-[#777777]`} style={{ fontFamily: '"Playfair Display", serif' }}>
               {t('Streetwear', 'رائدة')}
             </h1>
