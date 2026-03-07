@@ -113,26 +113,27 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/40 z-10"></div>
           <video
             ref={videoRef}
-            src="/custom/d4717a53-4af4-47aa-ad5b-e65f19fef091.mp4"
             autoPlay
             loop
             muted
             playsInline
             preload="auto"
             className="w-full h-full object-cover opacity-80"
-          ></video>
+          >
+            <source src="/custom/d4717a53-4af4-47aa-ad5b-e65f19fef091.mp4" type="video/mp4" />
+          </video>
         </div>
 
         {/* Massive Typography */}
         <div className={`flex flex-col mb-16 pointer-events-none w-full ${t('', 'items-end pr-0 md:pr-12')}`}>
           <div className={t('overflow-hidden', 'overflow-visible mb-2 md:mb-4')}>
             <h1 className={`gpu-ready hero-text-line text-[clamp(3.5rem,14vw,12rem)] ${t('leading-[0.8] tracking-tighter', 'leading-none tracking-normal text-right')} uppercase bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] via-[#999999] to-[#444444]`} style={{ fontFamily: '"Playfair Display", serif' }}>
-              {t('Technical', 'تقنية')}
+              {t('Technical', 'عتاد')}
             </h1>
           </div>
           <div className={`${t('overflow-hidden', 'overflow-visible')} lg:pl-[10vw]`}>
             <h1 className={`gpu-ready hero-text-line text-[clamp(3.5rem,14vw,12rem)] ${t('leading-[0.8] tracking-tighter', 'leading-none tracking-normal text-right')} uppercase italic font-light text-[#777777]`} style={{ fontFamily: '"Playfair Display", serif' }}>
-              {t('Streetwear', 'عالمية')}
+              {t('Streetwear', 'النخبة')}
             </h1>
           </div>
         </div>
