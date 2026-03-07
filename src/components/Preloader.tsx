@@ -23,10 +23,8 @@ export default function Preloader() {
 
     return (
         <div className="fixed inset-0 z-[9999] bg-[#050505] flex flex-col items-center justify-center font-mono overflow-hidden">
-            {/* Background Glitch Effects */}
-            <div className="absolute inset-0 z-0 opacity-10 pointer-events-none mix-blend-screen">
-                <div className="w-full h-full bg-[url('/custom/noise.png')] opacity-20"></div>
-            </div>
+            {/* Background Noise Effect */}
+            <div className="absolute inset-0 z-0 opacity-[0.04] pointer-events-none mix-blend-screen" style={{ backgroundImage: 'repeating-conic-gradient(#fff 0.0001%, transparent 0.0002%, transparent 0.0015%, #fff 0.0016%)', backgroundSize: '200px 200px' }}></div>
 
             <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}

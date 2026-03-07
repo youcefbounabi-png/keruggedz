@@ -38,13 +38,24 @@ function ScrollToTop() {
 }
 
 export default function App() {
-  const [isAppReady, setIsAppReady] = useState(false);
+  const [showPreloader, setShowPreloader] = useState(true);
+  const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsAppReady(true);
+    // After 1.6s, start fading out the preloader
+    const fadeTimer = setTimeout(() => {
+      setFadeOut(true);
     }, 1600);
-    return () => clearTimeout(timer);
+
+    // After fade animation completes (0.6s), remove preloader from DOM
+    const removeTimer = setTimeout(() => {
+      setShowPreloader(false);
+    }, 2200);
+
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(removeTimer);
+    };
   }, []);
 
   useEffect(() => {
@@ -89,23 +100,32 @@ export default function App() {
             <Navigation />
 
             <main className="flex-grow flex flex-col justify-center min-h-screen">
-              {!isAppReady ? (
-                <Preloader />
-              ) : (
-                <Suspense fallback={<Preloader />}>
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/shop" element={<Shop />} />
-                    <Route path="/product/:id" element={<Product />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/checkout" element={<Checkout />} />
-                  </Routes>
-                </Suspense>
-              )}
+              <Suspense fallback={<Preloader />}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/shop" element={<Shop />} />
+                  <Route path="/product/:id" element={<Product />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/checkout" element={<Checkout />} />
+                </Routes>
+              </Suspense>
             </main>
 
             <Footer />
           </div>
+
+          {/* Preloader Overlay — fades out smoothly */}
+          {showPreloader && (
+            <div
+              className="fixed inset-0 z-[9998] pointer-events-none"
+              style={{
+                opacity: fadeOut ? 0 : 1,
+                transition: 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+              }}
+            >
+              <Preloader />
+            </div>
+          )}
         </div>
       </Router>
     </LanguageProvider>
