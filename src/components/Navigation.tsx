@@ -72,7 +72,7 @@ export default function Navigation() {
 
         {/* Center Logo */}
         <div className="absolute left-1/2 -translate-x-1/2 md:flex-shrink-0 md:static md:translate-x-0 mx-auto text-center pointer-events-auto">
-          <Link to="/" aria-label="Home" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-[0.3em] md:tracking-[0.5em] font-light uppercase focus:outline-none block bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] via-[#999999] to-[#444444] animate-glow whitespace-nowrap" style={{ fontFamily: '"Playfair Display", serif' }}>
+          <Link to="/" aria-label="Home" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-[0.3em] md:tracking-[0.5em] font-light uppercase focus:outline-none block bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] via-[#e0e0e0] to-[#ffffff] animate-glow whitespace-nowrap" style={{ fontFamily: '"Playfair Display", serif' }}>
             KERUGGEDZ
           </Link>
         </div>
