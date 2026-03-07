@@ -96,12 +96,12 @@ export default function Navigation() {
         </div>
 
         {/* Mobile Toggle & Mobile Cart — no language toggle here, it's in the mobile menu */}
-        <div className="flex md:hidden flex-1 justify-end items-center gap-4 pointer-events-auto z-50">
+        <div className="flex md:hidden flex-1 justify-end items-center gap-3 pointer-events-auto z-50">
           <Link to="/checkout" aria-label="Cart" className="p-2 hover:opacity-70 transition-opacity focus:outline-none">
-            <ShoppingBag className="w-5 h-5 text-white" />
+            <ShoppingBag className="w-4 h-4 text-white" />
           </Link>
           <button aria-label="Toggle Menu" aria-expanded={isOpen} className="p-2 hover:opacity-70 transition-opacity focus:outline-none" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </nav>
