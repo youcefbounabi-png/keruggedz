@@ -41,6 +41,15 @@ export default function SplineScene() {
         }
     }, [isMobile]);
 
+    // If on mobile, do not render the WebGL canvas at all to save massive GPU overhead
+    if (isMobile) {
+        return (
+            <div className="relative w-full h-full overflow-hidden bg-[#050505]">
+                <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_0%,rgba(10,10,10,0.8)_100%)]"></div>
+            </div>
+        );
+    }
+
     return (
         <div className="relative w-full h-full overflow-hidden">
             {/* 3D Scene - Restored to original clean grid vibe */}
@@ -50,19 +59,17 @@ export default function SplineScene() {
                 style={{
                     width: '125%',
                     height: '125%',
-                    transform: isMobile ? 'scale(0.6)' : 'scale(0.8)',
+                    transform: 'scale(0.8)',
                     transformOrigin: 'center center',
                     position: 'absolute',
                     top: '-12.5%',
                     left: '-12.5%',
-                    opacity: isMobile ? 0.4 : 0.8
+                    opacity: 0.8
                 }}
             >
                 {isInView && (
                     <Spline
                         scene={SPLINE_SCENE_URL}
-                        // Render on demand for mobile or when we explicitly pause it
-                        renderOnDemand={isMobile}
                     />
                 )}
             </div>
