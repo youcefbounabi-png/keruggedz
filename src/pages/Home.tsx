@@ -153,7 +153,7 @@ export default function Home() {
           </video>
         </div>
 
-        {/* Massive Typography */}
+        {/* Massive Typography & Direct CTA */}
         <div className={`flex flex-col mb-16 pointer-events-none w-full ${t('items-start pl-0 md:pl-12', 'items-end text-right pr-0 md:pr-12')}`}>
           <div className={`overflow-hidden mb-2 md:mb-4 w-fit ${t('', 'ml-auto')}`}>
             <h1 className={`gpu-ready hero-text-line text-[clamp(3rem,14vw,12rem)] ${t('leading-[0.8] tracking-tighter text-left', 'leading-none tracking-normal text-right')} uppercase bg-clip-text text-transparent bg-gradient-to-r from-[#ffffff] via-[#999999] to-[#444444]`} style={{ fontFamily: '"Playfair Display", serif' }}>
@@ -165,105 +165,34 @@ export default function Home() {
               {t('Streetwear', 'رائدة')}
             </h1>
           </div>
-        </div>
 
-        {/* Hero Meta Data */}
-        <div className={`gpu-ready mt-8 md:absolute md:top-1/2 ${t('md:right-6 lg:right-20 text-left md:text-right', 'md:left-6 lg:left-20 text-right md:text-left')} md:-translate-y-1/2 max-w-sm hero-meta pointer-events-auto z-20`}>
-          <p className={`text-[10px] ${t('tracking-[0.3em]', 'tracking-[0.1em]')} font-medium leading-loose uppercase mb-8 md:mb-12 text-[#e5e5e5]`} aria-label="Brand Description">
-            {t(
-              <>
-                KERUGGEDZ | HIGH-PERFORMANCE STREETWEAR.
-                <br className="hidden md:block" />
-                Where technical precision meets
-                <br className="hidden md:block" />
-                uncompromising silver aesthetics.
-                <br className="hidden md:block" />
-                The quiet luxury of survival.
-              </>,
-              <>
-                كيروغدز | أداء عالي في الشارع.
-                <br className="hidden md:block" />
-                جودة عالية وسومة معقولة.
-                <br className="hidden md:block" />
-                لبسة نقية تبان أصلية،
-                <br className="hidden md:block" />
-                أناقة مضمونة لكاع الأوقات.
-              </>
-            )}
-          </p>
-          <Link
-            to="/shop"
-            aria-label="Explore Equipment"
-            className={`inline-flex items-center text-[10px] ${t('tracking-[0.4em]', 'tracking-[0.2em]')} font-bold uppercase pb-3 border-b border-white hover:text-[#999999] hover:border-[#999999] transition-all duration-300 group`}
-          >
-            {t('Explore Equipment', 'اكتشف السلعة')}
-            <ArrowRight className={`${t('ml-3', 'mr-3 rotate-180')} w-4 h-4 group-hover:translate-x-2 transition-transform duration-300`} />
-          </Link>
+          {/* CRO Refactor: Value Proposition & Massive CTA directly in the visual hierarchy */}
+          <div className={`mt-8 md:mt-12 overflow-hidden w-fit pointer-events-auto ${t('lg:pl-[10vw]', 'lg:pr-[10vw]')} ${t('', 'ml-auto')}`}>
+            <div className={`hero-meta flex flex-col ${t('items-start', 'items-end')} gap-8`}>
+              <p className={`text-sm md:text-base font-medium text-[#cccccc] max-w-sm md:max-w-lg leading-relaxed ${t('text-left', 'text-right')}`}>
+                {t(
+                  "Premium, weather-proof streetwear designed in Algeria. Engineered for the city and the mountains.",
+                  "ملابس عالية الجودة مقاومة للطقس مصممة في الجزائر. مصنوعة لتلائم المدينة والجبال."
+                )}
+              </p>
+
+              <Link
+                to="/shop"
+                aria-label="Explore The Collection"
+                className={`group relative inline-flex items-center justify-center px-10 py-5 bg-white text-black font-bold text-[10px] md:text-xs ${t('tracking-[0.2em]', 'tracking-wider')} uppercase overflow-hidden transition-all hover:bg-black hover:text-white border border-transparent hover:border-white shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_60px_rgba(255,255,255,0.3)]`}
+              >
+                <div className="absolute inset-0 w-0 bg-black transition-all duration-[300ms] ease-out group-hover:w-full z-0"></div>
+                <span className="relative z-10 flex items-center gap-3">
+                  {t('Explore The Collection', 'تسوق المجموعة')}
+                  <ArrowRight className={`${t('', 'rotate-180')} w-4 h-4 group-hover:translate-x-1 transition-transform`} />
+                </span>
+              </Link>
+            </div>
+          </div>
         </div>
 
         <div className={`absolute bottom-8 right-6 md:bottom-12 md:right-20 text-[10px] tracking-[0.4em] ${t('font-mono', 'font-sans')} uppercase opacity-40 hero-meta hidden md:block`}>
           [ {t('Scroll to Ascend', 'قم بالتمرير للصعود')} ]
-        </div>
-      </section>
-
-      {/* Brand Manifesto Section */}
-      <section className="gpu py-32 md:py-48 px-6 md:px-20 relative z-10 bg-transparent">
-        <div className="max-w-[2400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-          <div className="space-y-12">
-            <h2 className={`text-5xl md:text-7xl font-light tracking-tighter ${t('leading-[1.1]', 'leading-tight')}`} style={{ fontFamily: '"Playfair Display", serif' }}>
-              {t(
-                <>
-                  The Archetype <br />
-                  <span className="text-[#666]">of Exploration.</span>
-                </>,
-                <>
-                  كيروغدز. <br />
-                  <span className="text-[#666]">الزين والهمة.</span>
-                </>
-              )}
-            </h2>
-            <p className={`text-lg md:text-xl text-[#999] leading-relaxed max-w-xl font-light ${t('tracking-wide', 'tracking-normal')}`}>
-              {t(
-                "Keruggedz exists at the intersection of brutalist architecture and technical necessity. Every garment is a tool for the modern nomad—deconstructed, reinforced, and refined for the uncompromising terrain of the future.",
-                "سلعة مضمونة، لبسة شابة وسومة معقولة. نخدمو باش نوفرولك أحسن جودة بأفضل سعر. كل قطعة مخدومة للماركات العالمية باش توالمك في كاع الظروف."
-              )}
-            </p>
-          </div>
-          <div className="relative group p-6 border border-white/5 bg-white/[0.02]">
-            {/* Technical Frame Wrapper */}
-            <div className="tech-frame-container relative overflow-visible inline-block w-full">
-              {/* Corner Brackets - Positioned precisely relative to image container */}
-              <div className="tech-bracket tech-bracket-tl"></div>
-              <div className="tech-bracket tech-bracket-tr"></div>
-              <div className="tech-bracket tech-bracket-bl"></div>
-              <div className="tech-bracket tech-bracket-br"></div>
-
-              {/* HUD Data Labels */}
-              <div className="tech-data-label top-2 left-4 animate-flicker-slow">
-                [ ALTITUDE: <span ref={altitudeRef}>4810</span>M ]
-              </div>
-              <div className="tech-data-label bottom-2 right-4">
-                [ COORD: <span ref={coordinatesRef}>45.8327°N 6.8651°E</span> ]
-              </div>
-              <div className="tech-data-label -rotate-90 origin-left -left-6 top-1/2 opacity-20">MANIFESTO_FEED_V3.0</div>
-
-              {/* Offset Border */}
-              <div className="offset-border"></div>
-
-              {/* Image Scale offset instead of explicit height to avoid jumping */}
-              <div className="relative w-full aspect-[4/5] overflow-hidden rotate-[-1deg] hover:rotate-1 transition-transform duration-700 glass-panel bg-transparent mb-8 group p-2">
-                <div className="w-full h-full overflow-hidden relative">
-                  <img
-                    src="/assets/alpine_fog.png"
-                    alt="Alpine Manifesto"
-                    className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent opacity-60"></div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -315,17 +244,78 @@ export default function Home() {
 
                   {/* Fluid Hover Reveal Button */}
                   <div className="absolute inset-0 flex flex-col items-center justify-end p-8 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 translate-y-8 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-[0.8s] ease-[cubic-bezier(0.16,1,0.3,1)]">
-                    <button className={`px-10 py-5 bg-[#fafafa] text-[#111111] text-[10px] font-bold ${t('tracking-[0.25em]', 'tracking-widest')} uppercase hover:bg-[#e5e5e5] transition-colors duration-300 w-full`}>
-                      {t('View Equipment', 'شوف السلعة')}
+                    <button className={`px-10 py-5 bg-[#fafafa] text-[#111111] text-[10px] md:text-xs hover:bg-black hover:text-white border border-transparent hover:border-white shadow-[0_0_20px_rgba(255,255,255,0.1)] font-bold ${t('tracking-[0.25em]', 'tracking-widest')} uppercase hover:bg-[#e5e5e5] transition-colors duration-300 w-full`}>
+                      {t('View Details / Add to Cart', 'التفاصيل / إضافة للسلة')}
                     </button>
                   </div>
                 </div>
                 <div className="flex justify-between items-start px-2">
                   <h3 className="text-xs font-semibold tracking-[0.2em] uppercase text-[#e5e5e5]">{item.title}</h3>
-                  <span className="text-xs font-mono tracking-widest text-[#fafafa]">{item.price}</span>
+                  <span className="text-xs md:text-sm font-bold font-mono tracking-widest text-[#ffffff] bg-black/50 px-3 py-1 border border-white/20">{item.price}</span>
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Brand Manifesto Section */}
+      <section className="gpu py-32 md:py-48 px-6 md:px-20 relative z-10 bg-transparent">
+        <div className="max-w-[2400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+          <div className="space-y-12">
+            <h2 className={`text-5xl md:text-7xl font-light tracking-tighter ${t('leading-[1.1]', 'leading-tight')}`} style={{ fontFamily: '"Playfair Display", serif' }}>
+              {t(
+                <>
+                  Engineered For <br />
+                  <span className="text-[#666]">The Extreme.</span>
+                </>,
+                <>
+                  كيروغدز. <br />
+                  <span className="text-[#666]">مصممة للقمة.</span>
+                </>
+              )}
+            </h2>
+            <p className={`text-base md:text-lg text-[#cccccc] leading-relaxed max-w-xl font-light ${t('tracking-wide', 'tracking-normal')}`}>
+              {t(
+                "We don't just design clothes; we engineer equipment. Keruggedz builds premium outerwear that bridges the gap between high-end urban aesthetics and tactical, weather-proof functionality.",
+                "سلعة مضمونة، لبسة شابة وسومة معقولة. نخدمو باش نوفرولك أحسن جودة بأفضل سعر. كل قطعة مخدومة للماركات العالمية باش توالمك في كاع الظروف."
+              )}
+            </p>
+          </div>
+          <div className="relative group p-6 border border-white/5 bg-white/[0.02]">
+            {/* Technical Frame Wrapper */}
+            <div className="tech-frame-container relative overflow-visible inline-block w-full">
+              {/* Corner Brackets - Positioned precisely relative to image container */}
+              <div className="tech-bracket tech-bracket-tl"></div>
+              <div className="tech-bracket tech-bracket-tr"></div>
+              <div className="tech-bracket tech-bracket-bl"></div>
+              <div className="tech-bracket tech-bracket-br"></div>
+
+              {/* HUD Data Labels */}
+              <div className="tech-data-label top-2 left-4 animate-flicker-slow">
+                [ ALTITUDE: <span ref={altitudeRef}>4810</span>M ]
+              </div>
+              <div className="tech-data-label bottom-2 right-4">
+                [ COORD: <span ref={coordinatesRef}>45.8327°N 6.8651°E</span> ]
+              </div>
+              <div className="tech-data-label -rotate-90 origin-left -left-6 top-1/2 opacity-20">MANIFESTO_FEED_V3.0</div>
+
+              {/* Offset Border */}
+              <div className="offset-border"></div>
+
+              {/* Image Scale offset instead of explicit height to avoid jumping */}
+              <div className="relative w-full aspect-[4/5] overflow-hidden rotate-[-1deg] hover:rotate-1 transition-transform duration-700 glass-panel bg-transparent mb-8 group p-2">
+                <div className="w-full h-full overflow-hidden relative">
+                  <img
+                    src="/assets/alpine_fog.png"
+                    alt="Alpine Manifesto"
+                    className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent opacity-60"></div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -442,13 +432,13 @@ export default function Home() {
         <div className="relative z-10">
           <h2 className={`text-[8vw] ${t('leading-[1]', 'leading-tight')} font-light text-[#fafafa] max-w-[90vw] tracking-tighter`} style={{ fontFamily: '"Playfair Display", serif' }}>
             {t(
-              <>Function meets <span className="italic text-[#999999]">form</span>.</>,
+              <>Armor for the <span className="italic text-[#999999]">modern nomad</span>.</>,
               <>همة و شان <span className="italic text-[#999999]">في لبسه وحدة</span>.</>
             )}
           </h2>
-          <p className={`max-w-2xl mt-16 text-xs md:text-sm ${t('tracking-[0.3em]', 'tracking-[0.1em]')} font-medium leading-loose uppercase text-[#999999] mx-auto`}>
+          <p className={`max-w-xl mt-12 text-xs md:text-sm ${t('tracking-[0.2em]', 'tracking-[0.1em]')} font-bold leading-loose uppercase text-[#cccccc] mx-auto`}>
             {t(
-              "We forge equipment that withstands the peak and commands the streets. Engineered for the unseen vanguard of the outdoors.",
+              "100% Weather-proof. Tactical Utility. Uncompromising Style. Upgrade your everyday carry.",
               "سلعة مضمونة تقاوم وتضوي بين الناس. لباس أنيق مصمم باش تماركي بيه الوجود نتاعك."
             )}
           </p>
