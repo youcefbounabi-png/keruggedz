@@ -7,18 +7,26 @@ import { useLanguage } from '../context/LanguageContext';
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [hudData, setHudData] = useState({ altitude: 4810, lat: 45.8327, lng: 6.8651 });
+  // Using refs for HUD elements instead of React state to avoid 60fps re-renders
+  const altitudeRef = useRef<HTMLSpanElement>(null);
+  const coordinatesRef = useRef<HTMLSpanElement>(null);
   const { t } = useLanguage();
 
   useEffect(() => {
-    // GSAP Ticker for smooth HUD updates (Performance)
+    // GSAP Ticker: Direct DOM mutation prevents massive React re-render lag
     const updateStats = () => {
       const scrollY = window.scrollY;
-      const newAltitude = Math.max(0, 4810 - Math.floor(scrollY * 0.5));
-      const newLat = (45.8327 + (scrollY * 0.0001)).toFixed(4);
-      const newLng = (6.8651 + (scrollY * 0.0001)).toFixed(4);
 
-      setHudData({ altitude: newAltitude, lat: parseFloat(newLat), lng: parseFloat(newLng) });
+      if (altitudeRef.current) {
+        const newAltitude = Math.max(0, 4810 - Math.floor(scrollY * 0.5));
+        altitudeRef.current.innerText = newAltitude.toString();
+      }
+
+      if (coordinatesRef.current) {
+        const newLat = (45.8327 + (scrollY * 0.0001)).toFixed(4);
+        const newLng = (6.8651 + (scrollY * 0.0001)).toFixed(4);
+        coordinatesRef.current.innerText = `${newLat}°N ${newLng}°E`;
+      }
     };
 
     gsap.ticker.add(updateStats);
@@ -115,14 +123,16 @@ export default function Home() {
           }}
         >
           <div className="absolute inset-0 bg-black/40 z-10"></div>
+          {/* dir="ltr" ensures the oversized video aligns to the left edge so translate-x-[30%] works correctly in Arabic mode */}
           <video
             ref={videoRef}
+            dir="ltr"
             autoPlay
             loop
             muted
             playsInline
             preload="auto"
-            className="w-full h-full object-cover opacity-80 min-w-[250%] md:min-w-full -translate-x-[30%] md:translate-x-0"
+            className="w-full h-full object-cover opacity-80 min-w-[250%] md:min-w-full origin-left -translate-x-[30%] md:translate-x-0"
           >
             <source src="/custom/d4717a53-4af4-47aa-ad5b-e65f19fef091.mp4#t=1.5" type="video/mp4" />
           </video>
@@ -214,22 +224,27 @@ export default function Home() {
               <div className="tech-bracket tech-bracket-br"></div>
 
               {/* HUD Data Labels */}
-              <div className="tech-data-label top-2 left-4 animate-flicker-slow">[ ALTITUDE: {hudData.altitude}M ]</div>
-              <div className="tech-data-label bottom-2 right-4">[ COORD: {hudData.lat}° N, {hudData.lng}° E ]</div>
+              <div className="tech-data-label top-2 left-4 animate-flicker-slow">
+                [ ALTITUDE: <span ref={altitudeRef}>4810</span>M ]
+              </div>
+              <div className="tech-data-label bottom-2 right-4">
+                [ COORD: <span ref={coordinatesRef}>45.8327°N 6.8651°E</span> ]
+              </div>
               <div className="tech-data-label -rotate-90 origin-left -left-6 top-1/2 opacity-20">MANIFESTO_FEED_V3.0</div>
 
               {/* Offset Border */}
               <div className="offset-border"></div>
 
-              {/* Main Image Container */}
-              <div className="relative aspect-video lg:aspect-square overflow-hidden rounded-sm transition-all duration-700 group-hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] z-10">
-                <img
-                  src="/assets/alpine_fog.png"
-                  alt="Alpine Manifesto"
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-all duration-1000 ease-out"
-                />
+              {/* Image Scale offset instead of explicit height to avoid jumping */}
+              <div className="relative w-full aspect-[4/5] overflow-hidden rotate-[-1deg] hover:rotate-1 transition-transform duration-700 glass-panel bg-transparent mb-8 group p-2">
+                <div className="w-full h-full overflow-hidden relative">
+                  <img
+                    src="/assets/alpine_fog.png"
+                    alt="Alpine Manifesto"
+                    className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent opacity-60"></div>
               </div>
             </div>
