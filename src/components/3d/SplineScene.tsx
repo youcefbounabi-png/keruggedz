@@ -42,10 +42,42 @@ export default function SplineScene() {
     }, [isMobile]);
 
     // If on mobile, do not render the WebGL canvas at all to save massive GPU overhead
+    // Instead, render a lightweight, pure CSS animated grid to keep the technical aesthetic.
     if (isMobile) {
         return (
             <div className="relative w-full h-full overflow-hidden bg-[#050505]">
-                <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_0%,rgba(10,10,10,0.8)_100%)]"></div>
+                {/* CSS Grid Pattern */}
+                <div
+                    className="absolute inset-0 z-0 opacity-20"
+                    style={{
+                        backgroundImage: 'linear-gradient(#444 1px, transparent 1px), linear-gradient(90deg, #444 1px, transparent 1px)',
+                        backgroundSize: '40px 40px',
+                        transform: 'perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px)',
+                        transformOrigin: 'top center'
+                    }}
+                ></div>
+
+                {/* Scrolling Grid Overlay Animation (Pure CSS, 0 WebGL cost) */}
+                <style>{`
+                    @keyframes gridMove {
+                        0% { transform: translateY(0); }
+                        100% { transform: translateY(40px); }
+                    }
+                    .mobile-grid-anim {
+                        animation: gridMove 2s linear infinite;
+                    }
+                `}</style>
+                <div
+                    className="absolute inset-0 z-0 opacity-30 mobile-grid-anim"
+                    style={{
+                        backgroundImage: 'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, transparent 1px, transparent 1px)',
+                        backgroundSize: '40px 40px',
+                        transformOrigin: 'top center'
+                    }}
+                ></div>
+
+                {/* Heavy Vignette to focus the center and hide the flat edges */}
+                <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_top,transparent_0%,rgba(5,5,5,0.9)_70%,rgba(5,5,5,1)_100%)]"></div>
             </div>
         );
     }
