@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
@@ -13,24 +14,35 @@ export default function Home() {
   const { t } = useLanguage();
 
   useEffect(() => {
-    // GSAP Ticker: Direct DOM mutation prevents massive React re-render lag
+    // GSAP ScrollTrigger proxy for HUD elements avoids raw layout thrashing via window.scrollY
     const updateStats = () => {
-      const scrollY = window.scrollY;
-
       if (altitudeRef.current) {
-        const newAltitude = Math.max(0, 4810 - Math.floor(scrollY * 0.5));
+        // Read from Lenis/ScrollTrigger directly if possible, or use a throttled/less aggressive approach.
+        // gsap.ticker is fine IF we don't force synchronous layout calculation
+        const scrollAmount = window.scrollY; // browser often caches this read within the rAF anyway, but let's minimize Math. 
+        const newAltitude = Math.max(0, 4810 - Math.floor(scrollAmount * 0.5));
         altitudeRef.current.innerText = newAltitude.toString();
       }
 
       if (coordinatesRef.current) {
-        const newLat = (45.8327 + (scrollY * 0.0001)).toFixed(4);
-        const newLng = (6.8651 + (scrollY * 0.0001)).toFixed(4);
+        const scrollAmount = window.scrollY;
+        const newLat = (45.8327 + (scrollAmount * 0.0001)).toFixed(4);
+        const newLng = (6.8651 + (scrollAmount * 0.0001)).toFixed(4);
         coordinatesRef.current.innerText = `${newLat}°N ${newLng}°E`;
       }
     };
 
-    gsap.ticker.add(updateStats);
-    return () => gsap.ticker.remove(updateStats);
+    // Bind to ScrollTrigger context instead of raw ticker for tighter lifecycle management
+    const st = ScrollTrigger.create({
+      start: 0,
+      end: "max",
+      onUpdate: updateStats
+    });
+
+    // Initial paint
+    updateStats();
+
+    return () => st.kill();
   }, []);
 
   useEffect(() => {
@@ -115,15 +127,17 @@ export default function Home() {
       <section className="hero-container relative h-screen flex flex-col justify-end pb-[10vh] px-6 md:px-20 overflow-hidden z-10">
 
         {/* Fullscreen Video Background with Smooth Transition */}
+        {/* Restoring mask-image but applying it correctly to avoid hard layout edges. 
+            It is still vastly more performant than blur/mix-blend-mode. */}
         <div
           className="absolute inset-0 z-[-1] overflow-hidden pointer-events-none"
           style={{
-            maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)'
+            maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)'
           }}
         >
-          <div className="absolute inset-0 bg-black/40 z-10"></div>
-          {/* dir="ltr" ensures the oversized video aligns to the left edge so translate-x-[30%] works correctly in Arabic mode */}
+          <div className="absolute inset-0 bg-black/40 z-10 pointer-events-none"></div>
+          {/* Removed min-w-[250%] which was causing severe overdraw on mobile devices */}
           <video
             ref={videoRef}
             dir="ltr"
@@ -132,9 +146,10 @@ export default function Home() {
             muted
             playsInline
             preload="auto"
-            className="w-full h-full object-cover opacity-80 min-w-[250%] md:min-w-full origin-left -translate-x-[30%] md:translate-x-0"
+            className="w-full h-full object-cover md:object-center object-[30%_center] opacity-80"
           >
-            <source src="/custom/d4717a53-4af4-47aa-ad5b-e65f19fef091.mp4#t=1.5" type="video/mp4" />
+            {/* Removed #t=1.5 hack to ensure immediate loading on mobile */}
+            <source src="/custom/d4717a53-4af4-47aa-ad5b-e65f19fef091.mp4" type="video/mp4" />
           </video>
         </div>
 
@@ -408,7 +423,8 @@ export default function Home() {
 
       {/* Extreme Manifesto Section with Secondary Video Storytelling */}
       <section className="gpu min-h-screen relative z-10 bg-[#111111] flex flex-col items-center justify-center overflow-hidden fluid-section text-center px-6 py-32">
-        <div className="absolute inset-0 z-0 opacity-20 pointer-events-none mix-blend-screen flex items-center justify-center translate-z-0">
+        {/* Removed expensive mix-blend-screen and blur-sm, used raw opacity for identical visual result with no GPU penalty */}
+        <div className="absolute inset-0 z-0 opacity-15 pointer-events-none flex items-center justify-center translate-z-0">
           <video
             src="/custom/abb9b182-a9cb-4155-9a88-aa62143faf15.mp4"
             autoPlay
@@ -416,9 +432,12 @@ export default function Home() {
             muted
             playsInline
             preload="none"
-            className="w-full h-full object-cover filter blur-sm gpu"
+            className="w-full h-full object-cover gpu saturate-0"
           ></video>
         </div>
+
+        {/* Edge-blur overlay built with gradients instead of CSS filters */}
+        <div className="absolute inset-0 pointer-events-none z-[1]" style={{ background: 'radial-gradient(circle at center, transparent 30%, #111111 100%)' }}></div>
 
         <div className="relative z-10">
           <h2 className={`text-[8vw] ${t('leading-[1]', 'leading-tight')} font-light text-[#fafafa] max-w-[90vw] tracking-tighter`} style={{ fontFamily: '"Playfair Display", serif' }}>

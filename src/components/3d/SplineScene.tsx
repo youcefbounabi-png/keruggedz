@@ -7,11 +7,28 @@ export default function SplineScene() {
     const containerRef = useRef<HTMLDivElement>(null);
     const [isMobile, setIsMobile] = useState(false);
 
+    const [isInView, setIsInView] = useState(true);
+
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 768);
         checkMobile();
         window.addEventListener('resize', checkMobile, { passive: true });
         return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    // Intersection Observer to pause rendering when scrolled out of view
+    useEffect(() => {
+        if (!containerRef.current) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsInView(entry.isIntersecting);
+            },
+            { threshold: 0 } // trigger as soon as 1px is visible
+        );
+
+        observer.observe(containerRef.current);
+        return () => observer.disconnect();
     }, []);
 
     // On mobile: cap canvas pixel ratio to 1 for massive GPU savings
@@ -41,10 +58,13 @@ export default function SplineScene() {
                     opacity: isMobile ? 0.4 : 0.8
                 }}
             >
-                <Spline
-                    scene={SPLINE_SCENE_URL}
-                    renderOnDemand={isMobile}
-                />
+                {isInView && (
+                    <Spline
+                        scene={SPLINE_SCENE_URL}
+                        // Render on demand for mobile or when we explicitly pause it
+                        renderOnDemand={isMobile}
+                    />
+                )}
             </div>
 
             {/* Vignette Overlay to hide grid edges and focus center */}
